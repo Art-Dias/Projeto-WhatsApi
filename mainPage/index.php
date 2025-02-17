@@ -1,0 +1,572 @@
+<?php
+session_start();
+$device_token = $_SESSION['device_token'];
+
+include '../co/class.php';
+Proteger2();
+
+include '../connection.php';
+
+?>
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Mirrored from templates.hibootstrap.com/farol/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Mar 2024 11:28:31 GMT -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="assets/css/remixicon.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="assets/css/simplebar.css">
+    <!-- <link rel="stylesheet" href="assets/css/apexcharts.css"> -->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/rangeslider.css">
+    <link rel="stylesheet" href="assets/css/sweetalert.min.css">
+    <link rel="stylesheet" href="assets/css/quill.snow.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="icon" type="image/png" href="assets/images/favicon2.png">
+
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+
+    <div class="preloader" id="preloader">
+        <div class="preloader">
+            <div class="waviy position-relative">
+                <span class="d-inline-block">T</span>
+                <span class="d-inline-block">O</span>
+                <span class="d-inline-block">U</span>
+                <span class="d-inline-block">C</span>
+                <span class="d-inline-block">H</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="sidebar-area" id="sidebar-area">
+        <div class="logo position-relative">
+            <a href="index-2.html" class="d-block text-decoration-none">
+                <script type="text/javascript" style="display:none">
+                    //<![CDATA[
+                    window.__mirage2 = {
+                        petok: "E6OShBzfzyzOVqRNZ7yq5IBtP.uhC5gRDVyNGSDFiZg-1800-0.0.1.1"
+                    };
+                    //]]>
+                </script>
+                <script type="text/javascript" src="../../ajax.cloudflare.com/cdn-cgi/scripts/04b3eb47/cloudflare-static/mirage2.min.js"></script>
+                <img data-cfsrc="assets/images/logo-icon.png" alt="logo-icon" style="display:none;visibility:hidden;"><noscript><img src="assets/images/logo-icon.png" alt="logo-icon"></noscript>
+                <span class="logo-text fw-bold text-dark">Touch</span>
+            </a>
+            <button class="sidebar-burger-menu bg-transparent p-0 border-0 opacity-0 z-n1 position-absolute top-50 end-0 translate-middle-y" id="sidebar-burger-menu">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <!-- <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar> -->
+        <aside id="layout-menu" class="layout-menu menu-vertical menu active" data-simplebar>
+            <ul class="menu-inner">
+                <li class="menu-item mb-0" style="padding-bottom: 15px;">
+                    <a href="index.php" class="menu-link">
+                        <i data-feather="home" class="menu-icon tf-icons"></i>
+                        <span class="title">Inicio</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- </li> -->
+
+            <!--  -->
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">Atendentes</span>
+
+            </li>
+            <li class="menu-item">
+                <a href="selecionarAtendente.php" class="menu-link">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Selecionar Atendente</span>
+                </a>
+            </li>
+
+            <!-- <li class="menu-item">
+                <a href="wizard.php" class="menu-link">
+                    <i data-feather="file-text" class="menu-icon tf-icons"></i>
+                    <span class="title">Gerenciar Clientes</span>
+                </a>
+            </li> -->
+
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <i data-feather="columns" class="menu-icon tf-icons"></i>
+                    <span class="title">Gerenciar Clientes</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="wizard.php" class="menu-link">
+                            Vincular Cliente a Atendente
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="listaClientes.php" class="menu-link">
+                            Gerenciar Clientes
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="cadAtendente.php" class="menu-link">
+                    <i data-feather="user" class="menu-icon tf-icons"></i>
+                    <span class="title">Gerenciar Atendentes</span>
+                </a>
+            </li>
+            <!--  -->
+
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">APPS</span>
+
+            </li>
+            <!-- <li class="menu-item">
+                <a href="../index.php" onclick="submitForm()" class="menu-link">
+                <a href="#" onclick="submitForm()" class="menu-link">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Chat</span>
+                </a>
+            </li> -->
+
+            <li class="menu-item">
+                <a href="#" onclick="submitForm(event)" class="menu-link">
+                    <i data-feather="message-square" class="menu-icon tf-icons"></i>
+                    <span class="title">Chat</span>
+                </a>
+            </li>
+
+            <form id="postForm" action="../index.php" method="POST" style="display: none;">
+                <input type="hidden" name="atendente" id="atendenteInput" value="">
+                <!-- Add more hidden inputs as needed -->
+            </form>
+
+            <script>
+                function submitForm(event) {
+                    event.preventDefault(); // Prevent default link behavior
+
+                    // Set the value of the hidden input
+                    document.getElementById("atendenteInput").value = "1, ADM";
+
+                    // Submit the form
+                    document.getElementById("postForm").submit();
+                }
+            </script>
+
+
+        </aside>
+        <div class="bg-white z-1 admin">
+            <div class="d-flex align-items-center admin-info border-top">
+                <div class="flex-shrink-0">
+                    <a href="profile.html" class="d-block">
+                        <img data-cfsrc="assets/images/admin.jpg" class="rounded-circle wh-54" alt="admin" style="display:none;visibility:hidden;"><noscript><img src="assets/images/admin.jpg" class="rounded-circle wh-54" alt="admin"></noscript>
+                    </a>
+                </div>
+                <div class="flex-grow-1 ms-3 info">
+                    <a href="#" class="d-block name"><?php echo $_SESSION['nome'] ?></a>
+                    <a href="logout.php">Encerrar Sessão</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="main-content d-flex flex-column">
+
+            <header class="header-area bg-white mb-4 rounded-bottom-10" id="header-area">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-sm-6 col-md-4">
+                        <div class="left-header-content">
+                            <ul class="d-flex align-items-center ps-0 mb-0 list-unstyled justify-content-center justify-content-sm-start">
+                                <li>
+                                    <button class="header-burger-menu bg-transparent p-0 border-0" id="header-burger-menu">
+                                        <i data-feather="menu"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-6 col-md-8">
+                        <div class="right-header-content mt-2 mt-sm-0">
+                            <ul class="d-flex align-items-center justify-content-center justify-content-sm-end ps-0 mb-0 list-unstyled">
+                                <li class="header-right-item d-none d-md-block">
+                                    <div class="today-date">
+                                        <span id="digitalDate"></span>
+                                        <i data-feather="calendar"></i>
+                                    </div>
+                                </li>
+                                <li class="header-right-item">
+                                    <div class="dropdown admin-profile">
+                                        <div class="d-xxl-flex align-items-center bg-transparent border-0 text-start p-0 cursor" data-bs-toggle="dropdown">
+                                            <div class="flex-shrink-0">
+                                                <img class="rounded-circle wh-54" data-cfsrc="assets/images/admin.jpg" alt="admin" style="display:none;visibility:hidden;"><noscript><img class="rounded-circle wh-54" src="assets/images/admin.jpg" alt="admin"></noscript>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="d-none d-xxl-block">
+                                                        <span class="degeneration">Admin</span>
+                                                        <div class="d-flex align-content-center">
+                                                            <h3>Adison Jeck</h3>
+                                                            <div class="down">
+                                                                <i data-feather="chevron-down"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="dropdown-menu border-0 bg-white w-100 admin-link">
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center text-body" href="profile.html">
+                                                    <i data-feather="user"></i>
+                                                    <span class="ms-2">Profile</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center text-body" href="account.html">
+                                                    <i data-feather="settings"></i>
+                                                    <span class="ms-2">Setting</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center text-body" href="logout.html">
+                                                    <i data-feather="log-out"></i>
+                                                    <span class="ms-2">Logout</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+            <div class="row justify-content-center">
+                <div class="col-xxl-8">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="stats-box card bg-white border-0 rounded-10 mb-4">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3 pb-1">
+                                        <div class="flex-grow-1 me-3">
+                                            <h3 class="body-font fw-bold fs-3 mb-2">
+                                                <?php
+                                                $connection = DatabaseConnection::getConnection();
+
+
+                                                $sqlNumerosCadastros = $connection->query("SELECT chats FROM `atendentes_$device_token` WHERE id = 1");
+                                                $rowValue3 = mysqli_fetch_assoc($sqlNumerosCadastros);
+                                                $cadastrosJSON = $rowValue3['chats'];
+                                                $listaChats = json_decode($cadastrosJSON, true);
+                                                $listaNumerosCadastrados = array_keys($listaChats);
+                                                $keyString = implode(',', $listaNumerosCadastrados);
+
+                                                $sqlQuery = $connection->query("SELECT COUNT(DISTINCT number_from) AS quantidade FROM `mensagem_infos` WHERE lido = '0' AND device_token = \"$device_token\" AND number_from IN ($keyString);");
+
+                                                $rowValue0 = mysqli_fetch_assoc($sqlQuery);
+                                                $naoLido = $rowValue0['quantidade'];
+
+                                                echo "$naoLido";
+                                                ?>
+                                            </h3>
+                                            <script>
+                                                var temp = <?php echo $listaNumerosCadastrados; ?>;
+                                                console.log(temp);
+                                            </script>
+                                            <span>Não Lidas</span>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <div class="icon transition">
+                                                <i class="flaticon-notification"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="stats-box card bg-white border-0 rounded-10 mb-4">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3 pb-1">
+                                        <div class="flex-grow-1 me-3">
+                                            <h3 class="body-font fw-bold fs-3 mb-2">
+                                                <?php
+
+                                                $sqlQuantiaConversas = $connection->query("SELECT chats FROM `atendentes_$device_token` WHERE id = 1");
+                                                $rowValue4 = mysqli_fetch_assoc($sqlQuantiaConversas);
+                                                $cadastrosJSON = $rowValue4['chats'];
+                                                $jsonArray = json_decode($cadastrosJSON, true);
+                                                $quantidadeConversas = count($jsonArray);
+
+                                                if ($quantidadeConversas < 0) {
+                                                    echo "0";
+                                                } else {
+                                                    echo "$quantidadeConversas";
+                                                }
+                                                ?>
+                                            </h3>
+                                            <span>Total de Conversas Iniciadas</span>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <div class="icon transition">
+                                                <i class="flaticon-whatsapp"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="stats-box card bg-white border-0 rounded-10 mb-4">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3 pb-1">
+                                        <div class="flex-grow-1 me-3">
+                                            <h3 class="body-font fw-bold fs-3 mb-2">
+                                                <?php
+                                                // $connection = DatabaseConnection::getConnection();
+
+                                                $sqlQuery = $connection->query("SELECT COUNT(*) AS quantidade FROM `atendentes_$device_token`");
+
+                                                $rowValue2 = mysqli_fetch_assoc($sqlQuery);
+                                                $quantidadeAtendentes = $rowValue2['quantidade'];
+
+                                                echo "$quantidadeAtendentes";
+                                                ?>
+                                            </h3>
+                                            <span>Total Atendentes</span>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <div class="icon transition">
+                                                <i class="flaticon-people"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xxl-8 col-xxxl-6">
+                    <div class="card bg-white border-0 rounded-10 mb-4">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center border-bottom pb-20 mb-20">
+                                <h4 class="fw-bold fs-18 mb-0">Lista de Atendentes</h4>
+                                <div class="dropdown action-opt">
+                                    <button class="btn bg-transparent p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i data-feather="more-horizontal"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end bg-white border box-shadow">
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;">
+                                                <i data-feather="clock"></i>
+                                                Today
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;">
+                                                <i data-feather="pie-chart"></i>
+                                                Last 7 Days
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;">
+                                                <i data-feather="rotate-cw"></i>
+                                                Last Month
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;">
+                                                <i data-feather="calendar"></i>
+                                                Last 1 Year
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;">
+                                                <i data-feather="bar-chart"></i>
+                                                All Time
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;">
+                                                <i data-feather="eye"></i>
+                                                View
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="javascript:;">
+                                                <i data-feather="trash"></i>
+                                                Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="default-table-area team-members-list">
+                                <div class="table-responsive">
+                                    <table class="table align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="text-primary">User</th>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Quant. Conversas</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php
+
+                                            // $connection = DatabaseConnection::getConnection();
+
+                                            $resultMsg = $connection->query("SELECT * FROM `atendentes_$device_token`");
+
+                                            while ($rowValue = mysqli_fetch_assoc($resultMsg)) {
+                                                $id = $rowValue['id'];
+                                                $nome = $rowValue['nome'];
+                                                $chats = $rowValue['chats'];
+
+                                                $JSONdecoded = json_decode($chats, true);
+                                                $chatsLength = count($JSONdecoded);
+
+                                                // $quantidadeConversas = $connection->query("SELECT JSON_LENGTH(chats) FROM atendentes AS json_element_count WHERE id = $id;");
+
+                                                echo "<tr> <td> <div class=\"d-flex align-items-center\"> <div class=\"flex-shrink-0\"> <img data-cfsrc=\"assets/images/user-4.jpg\" class=\"rounded-circle wh-44\" alt=\"user-4\" style=\"display:none;visibility:hidden;\"><noscript><img src=\"assets/images/user-4.jpg\" class=\"rounded-circle wh-44\" alt=\"user-4\"></noscript> </div> <div class=\"flex-grow-1 ms-10\"> <h4 class=\"fw-semibold fs-16 mb-0\">$nome</h4> </div> </div> </td> <td>$id</td> <td> <div class=\"d-flex align-items-center\" style=\"display: flex; justify-content: center; align-items: center;\"></i> <span>$chatsLength</span> </div> </td> <td> <span class=\"badge bg-success bg-opacity-10 text-success py-2 px-3 fw-semibold\">Active</span> </td> </tr>";
+                                            }
+
+                                            ?>
+            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- <div class="d-sm-flex justify-content-between align-items-center text-center">
+                                    <span class="fs-14">Showing 1 To 5 Of 20 Entries</span>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination mb-0 mt-3 mt-sm-0 justify-content-center">
+                                            <li class="page-item">
+                                                <a class="page-link icon" href="index-2.html" aria-label="Previous">
+                                                    <i data-feather="arrow-left"></i>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link active" href="index-2.html">1</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="index-2.html">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="index-2.html">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link icon" href="index-2.html" aria-label="Next">
+                                                    <i data-feather="arrow-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex-grow-1"></div>
+
+            <footer class="footer-area bg-white text-center rounded-top-10">
+                <p class="fs-14">© <span class="text-primary">Touch</span></p>
+
+        </div>
+    </div>
+
+
+    <button class="btn btn-danger theme-settings-btn p-0 position-fixed z-2 text-center" style="bottom: 30px; right: 30px; width: 40px; height: 40px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+        <i data-feather="settings" class="wh-20 text-white position-relative" style="top: -1px; outline: none;" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Click On Theme Settings"></i>
+    </button>
+    <div class="offcanvas offcanvas-end bg-white" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        <div class="offcanvas-header bg-body-bg py-3 px-4 mb-4">
+            <h5 class="offcanvas-title fs-18" id="offcanvasScrollingLabel">Configurações de Aparencia</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body px-4">
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">RTL / LTR</h4>
+            <div class="settings-btn rtl-btn">
+                <label id="switch" class="switch">
+                    <input type="checkbox" onchange="toggleTheme()" id="slider">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="mb-4 pb-2"></div>
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">Claro / Escuro</h4>
+            <button class="switch-toggle settings-btn dark-btn" id="switch-toggle">
+                Click Para <span class="dark">Escuro</span> <span class="light">Claro</span>
+            </button>
+            <div class="mb-4 pb-2"></div>
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">Barra Lateral Clara / Escura</h4>
+            <button class="sidebar-light-dark settings-btn sidebar-dark-btn" id="sidebar-light-dark">
+                Click Para <span class="dark1">Escuro</span> <span class="light1">Claro</span>
+            </button>
+            <div class="mb-4 pb-2"></div>
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">Barra Superior Claro / Escuro</h4>
+            <button class="header-light-dark settings-btn header-dark-btn" id="header-light-dark">
+                Click Para <span class="dark2">Escuro</span> <span class="light2">Claro</span>
+            </button>
+            <div class="mb-4 pb-2"></div>
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">Barra Inferior Claro / Escuro</h4>
+            <button class="footer-light-dark settings-btn footer-dark-btn" id="footer-light-dark">
+                Click Para <span class="dark3">Escuro</span> <span class="light3">Claro</span>
+            </button>
+            <div class="mb-4 pb-2"></div>
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">Estilo Circular / Quadrado</h4>
+            <button class="card-radius-square settings-btn card-style-btn" id="card-radius-square">
+                Click Para <span class="square">Square</span> <span class="radius">Radius</span>
+            </button>
+            <div class="mb-4 pb-2"></div>
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">Estilo BG Branco / Cinza</h4>
+            <button class="card-bg settings-btn card-bg-style-btn" id="card-bg">
+                Click Para <span class="white">White</span> <span class="gray">Gray</span>
+            </button>
+            <div class="mb-4 pb-2"></div>
+            <h4 class="fs-15 fw-semibold border-bottom pb-2 mb-3">Container Style Fluid / Boxed</h4>
+            <button class="boxed-style settings-btn fluid-boxed-btn" id="boxed-style">
+                Click To <span class="fluid">Fluid</span> <span class="boxed">Boxed</span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/sidebar-menu.js"></script>
+    <script src="assets/js/dragdrop.js"></script>
+    <script src="assets/js/rangeslider.min.js"></script>
+    <script src="assets/js/sweetalert.js"></script>
+    <script src="assets/js/quill.min.js"></script>
+    <script src="assets/js/data-table.js"></script>
+    <script src="assets/js/prism.js"></script>
+    <script src="assets/js/clipboard.min.js"></script>
+    <script src="assets/js/feather.min.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
+    <!-- <script src="assets/js/apexcharts.min.js"></script> -->
+    <script src="assets/js/amcharts.js"></script>
+    <!-- <script src="assets/js/custom/ecommerce-chart.js"></script> -->
+    <script src="assets/js/custom/custom.js"></script>
+</body>
+
+<!-- Mirrored from templates.hibootstrap.com/farol/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Mar 2024 11:29:14 GMT -->
+
+</html>
