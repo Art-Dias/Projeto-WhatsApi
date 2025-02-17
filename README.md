@@ -6,4 +6,4 @@ Sistema possui um chat integrado ao whatsapp, onde da pra enviar mensagens, imag
 
 Tudo utilizando banco de dados, tratamento de strings e requests, pra fazer basicamente um WhatsApp onde com 1 dispostivo conectado, consiga ser utulizado de varios computadores diferentes.
 
-Sem muitas informaçoes adicionais, pois é um sistema que vendo e essa é uma versão demonstrativa.
+Sem muitas informaçoes adicionais, pois é um sistema que vendo, essa é uma versão base e demonstrativa, que uso para testes e desenvolvimento no geral.
