@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Teste
+
+    <textarea name="" id="messageInput"></textarea>
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus similique qui omnis at quam sit quia aperiam,
+        iste voluptatem ducimus maiores nostrum ut suscipit, distinctio eaque saepe aliquid laudantium necessitatibus
+        iure. Dignissimos quisquam aperiam quos!
+        At maiores dolores tenetur labore magnam?
+
+        Quis odio voluptatibus excepturi sed, sapiente ab architecto dolorem.
+        Voluptatem repellendus aliquid, quisquam voluptate officiis doloremque placeat sapiente id ut voluptatibus!
+        Maiores sequi unde voluptates officiis et ex laudantium reiciendis. Vel quos nemo ipsum vero obcaecati tenetur
+        ipsam earum quisquam.
+        Distinctio iusto minus ex voluptas nesciunt libero repellendus laboriosam dolores id quis
+        error, voluptates est dolorem consequuntur quidem delectus?
+    </p>
+
+    <script>
+        document.getElementById('messageInput').addEventListener('keypress', function (event) {
+            if (event.key === "Enter" && event.shiftKey) {
+                // Prevent default behavior of pressing Enter
+                event.preventDefault();
+
+                // Add a line break
+                this.value += "\n";
+
+                console.log("Linha quebra");
+            } else if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent the default behavior of the Enter key
+
+                console.log("Enter só");
+            }
+        });
+    </script>
+</body>
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus similique qui omnis at quam sit quia aperiam,
+iste voluptatem ducimus maiores nostrum ut suscipit, distinctio eaque saepe aliquid laudantium necessitatibus
+iure. Dignissimos quisquam aperiam quos!
+At maiores dolores tenetur labore magnam?
+
+Quis odio voluptatibus excepturi sed, sapiente ab architecto dolorem.
+Voluptatem repellendus aliquid, quisquam voluptate officiis doloremque placeat sapiente id ut voluptatibus!
+Maiores sequi unde voluptates officiis et ex laudantium reiciendis. Vel quos nemo ipsum vero obcaecati tenetur
+ipsam earum quisquam.
+Distinctio iusto minus ex voluptas nesciunt libero repellendus laboriosam dolores id quis
+error, voluptates est dolorem consequuntur quidem delectus?
+</html>

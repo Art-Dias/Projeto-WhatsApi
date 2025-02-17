@@ -1,0 +1,109 @@
+#preloader {
+    /* top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* position: fixed; */
+    position: flex;
+    background-color: #fff
+}
+
+#preloader .preloader {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%
+}
+
+#preloader .preloader .loader {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    height: 150px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#preloader .preloader .loader div {
+    height: 100%
+}
+
+#preloader .preloader .loader,
+#preloader .preloader .loader div {
+    padding: 8px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    animation: rotate linear 3.5s infinite;
+    border-top-color: #757fef;
+    border-border-bottom: #757fef
+}
+
+#preloader .preloader .waviy {
+    position: relative;
+    text-align: center;
+    -webkit-box-reflect: below -47px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+    font-family: raleway, sans-serif;
+    font-size: 50px;
+    font-weight: 700
+}
+
+#preloader .preloader .waviy span {
+    position: relative;
+    color: #260944;
+    animation-delay: .1s;
+    display: inline-block;
+    animation: waviy 1s infinite
+}
+
+#preloader .preloader .waviy span:nth-child(2) {
+    animation-delay: .2s
+}
+
+#preloader .preloader .waviy span:nth-child(3) {
+    animation-delay: .3s
+}
+
+#preloader .preloader .waviy span:nth-child(4) {
+    animation-delay: .4s
+}
+
+#preloader .preloader .waviy span:nth-child(5) {
+    animation-delay: .5s
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    50% {
+        transform: rotate(180deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes waviy {
+
+    0%,
+    40%,
+    100% {
+        transform: translateY(0)
+    }
+
+    20% {
+        transform: translateY(-20px)
+    }
+}
+
+@media only screen and (max-width:767px) {
+    #preloader .preloader .waviy {
+        font-size: 30px
+    }
+}
